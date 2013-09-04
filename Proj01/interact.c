@@ -11,4 +11,11 @@ int main(int argc, char *arg[])
     {
       printf("Thanks for that FirstCommand!\n");
     }
+  else if( strcmp(pToInputLine, "Fork\n") )
+    {
+      int fret;
+      printf("hey man, I see you really want to try a Fork. Here goes\n");
+      fret = Fork();
+      printf("Fork() returned %d\n", fret);
+    }
 }
