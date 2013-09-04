@@ -11,7 +11,7 @@ int main(int argc, char *arg[])
     {
       printf("Thanks for that FirstCommand!\n");
     }
-  else if( strcmp(pToInputLine, "Fork\n") )
+  else if( strcmp(pToInputLine, "Fork\n") == 0 )
     {
       int fret;
       printf("hey man, I see you really want to try a Fork. Here goes\n");
