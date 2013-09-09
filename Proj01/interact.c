@@ -2,7 +2,10 @@
 
 int main(int argc, char *arg[])
 {
-  char *pToInputLine;
+  char *pToInputLine = NULL;
+  /*This MUST be initialized, otherwise getline might
+    think the memory pointed to by garbage is good to
+    use or re-allocate with realloc!*/
   int nread;
   printf("Hello. This is an interactive program.\n");
   nread = getline( &pToInputLine, &nread, stdin);
