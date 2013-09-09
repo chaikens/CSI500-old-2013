@@ -4,7 +4,6 @@ all : student_message fork project1 interact
 CC = gcc
 CFLAGS = -g 
 
-
 interact : interact.o csapp.o
 	$(CC) $(CFLAGS) -lpthread -o $@ interact.o csapp.o
 
