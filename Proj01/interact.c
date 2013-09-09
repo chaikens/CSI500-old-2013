@@ -6,14 +6,16 @@ int main(int argc, char *arg[])
   /*This MUST be initialized, otherwise getline might
     think the memory pointed to by garbage is good to
     use or re-allocate with realloc!*/
-  int nread=0;
+  int bufsize=0;
+  /*We MUST use a non-misleading, and even better, informative
+    name for the bufsize variable. My original "nread" was WRONG*/
   int nret;
   printf("Hello. This is an interactive program.\n");
-  nret = getline( &pToInputLine, &nread, stdin);
-  printf("Thanks for line %s It's length is nread=%d nret=%d,", pToInputLine, nread, nret);
+  nret = getline( &pToInputLine, &bufsize, stdin);
+  printf("Thanks for line %s lengths: bufsize=%d nret=%d,", pToInputLine, bufsize, nret);
   printf("\nGive me another command:");
-  nret = getline( & pToInputLine, &nread, stdin );
-  printf("Thanks for line %s It's length is nread=%d nret=%d,", pToInputLine, nread, nret); 
+  nret = getline( & pToInputLine, &bufsize, stdin );
+  printf("Thanks for line %s Lengths: bufsize=%d nret=%d,", pToInputLine, bufsize, nret); 
 
 
 
