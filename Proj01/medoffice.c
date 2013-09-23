@@ -38,14 +38,21 @@ static void printmenu()
 
 static char * getappfile(char *choice )
 {
-  printf("getappfile stub\n");
-  return 0;
+  char *ret = 0;
+  int i = 0;
+  int nchoices =  sizeof( ARRAY )/sizeof( struct command_struct );
+  while( i < nchoices && ret == NULL ) {
+    if( strcmp( choice, ARRAY[i].choice ) == 0 ) {
+      ret  = ARRAY[i].command;
+    }
+  }
+  return ret;
 }
 
 
 static void docommandwaiting( char * command )
 {
-  printf("docommandwaiting stub\n");
+  printf("docommandwaiting stub we will run %s\n", command);
 }
 
 int main(int argc, char *argv[])
@@ -63,18 +70,18 @@ int main(int argc, char *argv[])
       getline( &inbuffer, &bufsize, stdin);
       if( strcmp(inbuffer,"IAmTheBoss\n") == 0 ) {
 	looping = 0;
-      } else {
-	char * command = getappfile( inbuffer );
-	if( command == NULL ) {
-	  printf("Unrecognized office role.\n");
-	}
-	else {
-	  docommandwaiting( command );
-	}
+      } 
+    }
+    else {
+      char * command = getappfile( inbuffer );
+      if( command == NULL ) {
+	printf("Unrecognized office role.\n");
+      }
+      else {
+	docommandwaiting( command );
       }
     }
   }
-
   printf("If you see this, either you're an admin or you broke into our system.\n");
   return 0;
 }
