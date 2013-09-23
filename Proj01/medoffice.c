@@ -29,8 +29,11 @@ static struct command_struct ARRAY[ ] =
 static void printmenu()
 {
   int nchoices =  sizeof( ARRAY )/sizeof( struct command_struct );
-  printf("Menu stub\n");
-  printf("Number of choices is %d\n", nchoices );
+  int i;
+  printf("Role\tType this and ENTER:\n");
+  for( i = 0; i < nchoices; i++ ) {
+    printf("%s\t%s", ARRAY[i].role, ARRAY[i].choice );
+  }
 }
 
 static char * getappfile(char *choice )
