@@ -45,6 +45,7 @@ static char * getappfile(char *choice )
     if( strcmp( choice, ARRAY[i].choice ) == 0 ) {
       ret  = ARRAY[i].command;
     }
+    i++;
   }
   return ret;
 }
