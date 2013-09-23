@@ -10,17 +10,17 @@ static struct command_struct ARRAY[ ] =
   {
     {
       .role = "Doctor",
-      .choice = "d",
+      .choice = "d\n",
       .command = "./doctor"
     },
     {
       .role = "Nurse",
-      .choice = "n",
+      .choice = "n\n",
       .command = "./nurse"
     },
     {
       .role = "Receptionist",
-      .choice = "r",
+      .choice = "r\n",
       .command = "./receptionist"
     }
   };
@@ -55,10 +55,10 @@ int main(int argc, char *argv[])
     printmenu( );
     printf("Type admin to administer\n");
     getline( &inbuffer, &bufsize, stdin);
-    if( strcmp(inbuffer,"admin") == 0 ) { 
+    if( strcmp(inbuffer,"admin\n") == 0 ) { 
       printf("Your password please:");
       getline( &inbuffer, &bufsize, stdin);
-      if( strcmp(inbuffer,"IAmTheBoss") == 0 ) {
+      if( strcmp(inbuffer,"IAmTheBoss\n") == 0 ) {
 	looping = 0;
       } else {
 	char * command = getappfile( inbuffer );
