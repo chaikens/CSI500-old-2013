@@ -1,11 +1,25 @@
 
-all : student_message fork project1 interact
+all : student_message fork project1 interact medoffice doctor nurse receptionist
 
 CC = gcc
 CFLAGS = -g 
 
 interact : interact.o csapp.o
 	$(CC) $(CFLAGS) -lpthread -o $@ interact.o csapp.o
+
+
+medoffice : medoffice.o csapp.o
+	$(CC) $(CFLAGS) -lpthread -o $@ medoffice.o csapp.o
+
+doctor : doctor.o
+	$(CC) $(CFLAGS) -o $@ doctor.o
+
+nurse : nurse.o 
+	$(CC) $(CFLAGS) -o $@ nurse.o 
+
+receptionist : receptionist.o 
+	$(CC) $(CFLAGS)  -o $@ receptionist.o 
+
 
 fork : fork.o csapp.o
 	$(CC) $(CFLAGS) -lpthread -o $@ fork.o csapp.o
