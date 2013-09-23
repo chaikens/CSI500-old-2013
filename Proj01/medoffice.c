@@ -71,6 +71,7 @@ static void docommandwaiting( char * command )
     pid_t status;
     Wait( &status );
     printf("Info: child exited with status %d\n", status);
+    return ;
   } else {
     /* This code is ran by the child only.  The child should exec the
      * hopefully executable command file.
