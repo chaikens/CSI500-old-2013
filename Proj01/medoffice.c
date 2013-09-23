@@ -50,10 +50,42 @@ static char * getappfile(char *choice )
   return ret;
 }
 
-
+/* 
+ * I had to do library research to find the suitable exec variant.
+ * execl is the simplest: It takes a pathname to the exe file,
+ * and one or more command line args, the first should be the name
+ * of the command.  But the CSAPP wrappers only wraps Execve
+ * which requires argument and environment jagged array data structures.
+ * So, I'll set up an argument structure, and pass our environment
+ * pointer from global environ to the environment argument.
+ */
 static void docommandwaiting( char * command )
 {
-  printf("docommandwaiting stub we will run %s\n", command);
+  pid_t fret;
+  printf("\n docommandwaiting called with %s\n", command);
+  fret = Fork( );
+  if( fret ) {
+    /* This code is ran by the parent only.  The parent should wait and
+     * continue when wait returns.
+     */
+    pid_t status;
+    Wait( &status );
+    printf("Info: child exited with status %d\n", status);
+  } else {
+    /* This code is ran by the child only.  The child should exec the
+     * hopefully executable command file.
+     */
+    char *argv[] = { 0, 0 }; /*Allocate a length 2 array of char* on the stack*/
+    /* The first pointer will be set to the address of our command.
+     * The second will remain NULL to terminate the argument structure.
+     */
+    argv[0] = command;
+    Execve( command, argv, environ );
+    /* Control should NEVER return thing when things are normal. */
+    printf("Something is wrong: Maybe exe file %s doesn't exist.\n");
+    printf("We, the child, will exit with an error code 1.\n");
+    exit( 1 );
+  }
 }
 
 int main(int argc, char *argv[])
